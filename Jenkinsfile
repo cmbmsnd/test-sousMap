@@ -30,7 +30,7 @@ pipeline {
                 echo "Building Docker image: ${IMAGE_NAME}:${IMAGE_TAG}..."
                 // Build the image using the Dockerfile in the current directory
                 // The tag includes the Jenkins build number for versioning
-                sh "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} ."
+                sh "docker build -t ${IMAGE_NAME} ."
                 // Alternative using docker plugin (if installed):
                 // script {
                 //     dockerImage = docker.build("${IMAGE_NAME}:${IMAGE_TAG}")
@@ -85,7 +85,7 @@ pipeline {
                 // Use -d for detached mode
                 // Map host port to container port 80 (where Nginx listens)
                 echo "Running container from image ${IMAGE_NAME}:${IMAGE_TAG} on port ${HOST_PORT}"
-                sh "docker run -d -p ${HOST_PORT}:80 --name ${CONTAINER_NAME} ${IMAGE_NAME}:${IMAGE_TAG}"
+                sh "docker run -d -p ${HOST_PORT}:80 --name ${CONTAINER_NAME} ${IMAGE_NAME}"
 
                 // Optional: Add a small delay or health check here if needed
                 // sleep 10
